@@ -10,7 +10,7 @@
     },
     "review": {
       "scripts": {
-        "postdeploy": "./test.sh"
+        "postdeploy": "test.sh"
       }
     }
   }

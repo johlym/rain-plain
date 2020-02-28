@@ -10,7 +10,7 @@
     },
     "review": {
       "scripts": {
-        "postdeploy": "php ./lib/test.php"
+        "postdeploy": "php test.php"
       }
     }
   }

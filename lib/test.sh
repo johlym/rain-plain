@@ -1,1 +1,1 @@
-php test.php
+php ./test.php

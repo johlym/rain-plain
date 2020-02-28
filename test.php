@@ -1,20 +1,18 @@
 <?php
-$url = getenv('DATABASE_URL');
-
 if (getenv('DATABASE_URL')) {
-    echo "DATABASE_URL FOUND";
-    var_dump(parse_url($url));
-    var_dump(parse_url($url, PHP_URL_SCHEME));
-    var_dump(parse_url($url, PHP_URL_USER));
-    var_dump(parse_url($url, PHP_URL_PASS));
-    var_dump(parse_url($url, PHP_URL_HOST));
-    var_dump(parse_url($url, PHP_URL_PORT));
-    var_dump(parse_url($url, PHP_URL_PATH));
-    var_dump(parse_url($url, PHP_URL_QUERY));
-    var_dump(parse_url($url, PHP_URL_FRAGMENT));
-} 
-else {
-    echo "DATABASE_URL NOT FOUND.";
-}
+    $url = parse_url(getenv('DATABASE_URL'));
+    
+    putenv('DATABASE_URL='.getenv('DATABASE_URL'));
+    putenv('DB_HOST='.$url['host']);
+    putenv('DB_PORT='.$url['port']);
+    putenv('DB_DATABASE='.substr($url["path"], 1));
+    putenv('DB_PASSWORD='.$url['pass']);
+}else{
+    putenv('DB_HOST='.env('DB_HOST', '127.0.0.1'));
+    putenv('DB_PORT='.env('DB_PORT', 5432));
+    putenv('DB_DATABASE='.env('DB_DATABASE', 'taishan'));
+    putenv('DB_PASSWORD='.env('DB_PASSWORD', 'postgres'));
+    
+    }
 
 ?>
